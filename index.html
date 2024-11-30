@@ -33,10 +33,18 @@
 
     <script>
       var backgroundAudio = document.getElementById('background-audio');
-      // Play background audio when the page loads
-      window.onload = function() {
-            backgroundAudio.play();
-        };
+        var playButton = document.getElementById('playButton');
+
+        playButton.addEventListener('click', function () {
+            backgroundAudio.play()
+                .then(() => {
+                    console.log("Background music started successfully.");
+                    playButton.style.display = "none"; // Hide the play button after starting
+                })
+                .catch(error => {
+                    console.error("Failed to start background music:", error);
+                });
+        });
 
       var canvas = document.querySelector("#unity-canvas");
 
